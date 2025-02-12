@@ -1,0 +1,6 @@
+@Plushing_HostAddress = http://localhost:5185
+
+GET {{Plushing_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
