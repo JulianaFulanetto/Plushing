@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Plushing.Data;
 
@@ -11,9 +12,11 @@ using Plushing.Data;
 namespace Plushing.Migrations
 {
     [DbContext(typeof(PlushingContext))]
-    partial class PlushingContextModelSnapshot : ModelSnapshot
+    [Migration("20250212193556_Roupa")]
+    partial class Roupa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -220,207 +223,6 @@ namespace Plushing.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Plushing.Models.Carrinho", b =>
-                {
-                    b.Property<Guid>("CarrinhoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ClienteId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("CarrinhoId");
-
-                    b.HasIndex("ClienteId");
-
-                    b.ToTable("Carrinho", (string)null);
-                });
-
-            modelBuilder.Entity("Plushing.Models.Cliente", b =>
-                {
-                    b.Property<Guid>("ClienteId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Cpf")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telefone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("UserId1")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("ClienteId");
-
-                    b.HasIndex("UserId1");
-
-                    b.ToTable("Cliente", (string)null);
-                });
-
-            modelBuilder.Entity("Plushing.Models.Cor", b =>
-                {
-                    b.Property<Guid>("CorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CodigoHex")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CorId");
-
-                    b.ToTable("Cor", (string)null);
-                });
-
-            modelBuilder.Entity("Plushing.Models.ItemPedido", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<Guid?>("CarrinhoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PeluciaId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int?>("PeluciaId1")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("PersonalizacaoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("PrecoFinal")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Quantidade")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("VendaId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CarrinhoId");
-
-                    b.HasIndex("PeluciaId1");
-
-                    b.HasIndex("PersonalizacaoId");
-
-                    b.HasIndex("VendaId");
-
-                    b.ToTable("ItemPedido", (string)null);
-                });
-
-            modelBuilder.Entity("Plushing.Models.Pelucia", b =>
-                {
-                    b.Property<int>("PeluciaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PeluciaId"));
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("PrecoBase")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("PeluciaId");
-
-                    b.ToTable("Pelucia", (string)null);
-                });
-
-            modelBuilder.Entity("Plushing.Models.Personalizacao", b =>
-                {
-                    b.Property<Guid>("PersonalizacaoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CorId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("TextoPersonalizado")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("PersonalizacaoId");
-
-                    b.HasIndex("CorId");
-
-                    b.ToTable("Personalizacao", (string)null);
-                });
-
-            modelBuilder.Entity("Plushing.Models.Roupa", b =>
-                {
-                    b.Property<Guid>("RoupaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CorId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("Preco")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Tamanho")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("RoupaId");
-
-                    b.HasIndex("CorId");
-
-                    b.ToTable("Roupa", (string)null);
-                });
-
-            modelBuilder.Entity("Plushing.Models.Venda", b =>
-                {
-                    b.Property<Guid>("VendaId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ClienteId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("DataVenda")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("ValorTotal")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("VendaId");
-
-                    b.HasIndex("ClienteId");
-
-                    b.ToTable("Venda", (string)null);
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -470,91 +272,6 @@ namespace Plushing.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Plushing.Models.Carrinho", b =>
-                {
-                    b.HasOne("Plushing.Models.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cliente");
-                });
-
-            modelBuilder.Entity("Plushing.Models.Cliente", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId1");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Plushing.Models.ItemPedido", b =>
-                {
-                    b.HasOne("Plushing.Models.Carrinho", null)
-                        .WithMany("Itens")
-                        .HasForeignKey("CarrinhoId");
-
-                    b.HasOne("Plushing.Models.Pelucia", "Pelucia")
-                        .WithMany()
-                        .HasForeignKey("PeluciaId1");
-
-                    b.HasOne("Plushing.Models.Personalizacao", "Personalizacao")
-                        .WithMany()
-                        .HasForeignKey("PersonalizacaoId");
-
-                    b.HasOne("Plushing.Models.Venda", "Venda")
-                        .WithMany()
-                        .HasForeignKey("VendaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Pelucia");
-
-                    b.Navigation("Personalizacao");
-
-                    b.Navigation("Venda");
-                });
-
-            modelBuilder.Entity("Plushing.Models.Personalizacao", b =>
-                {
-                    b.HasOne("Plushing.Models.Cor", "Cor")
-                        .WithMany()
-                        .HasForeignKey("CorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cor");
-                });
-
-            modelBuilder.Entity("Plushing.Models.Roupa", b =>
-                {
-                    b.HasOne("Plushing.Models.Cor", "Cor")
-                        .WithMany()
-                        .HasForeignKey("CorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cor");
-                });
-
-            modelBuilder.Entity("Plushing.Models.Venda", b =>
-                {
-                    b.HasOne("Plushing.Models.Cliente", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cliente");
-                });
-
-            modelBuilder.Entity("Plushing.Models.Carrinho", b =>
-                {
-                    b.Navigation("Itens");
                 });
 #pragma warning restore 612, 618
         }
