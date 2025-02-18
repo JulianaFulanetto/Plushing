@@ -42,6 +42,22 @@ namespace Plushing.Controllers
             return acessorio;
         }
 
+        // GET: api/Acessorios/tipo/{tipoAcessorioId}
+        [HttpGet("tipo/{tipoAcessorioId}")]
+        public async Task<ActionResult<IEnumerable<Acessorio>>> GetAcessoriosByTipo(Guid tipoAcessorioId)
+        {
+            var acessorios = await _context.Acessorios
+                .Where(a => a.TipoAcessorioId == tipoAcessorioId)
+                .ToListAsync();
+
+            if (acessorios == null || !acessorios.Any())
+            {
+                return NotFound();
+            }
+
+            return acessorios;
+        }
+
         // PUT: api/Acessorios/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
