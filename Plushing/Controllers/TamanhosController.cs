@@ -42,6 +42,22 @@ namespace Plushing.Controllers
             return tamanho;
         }
 
+        // GET: api/Tamanhos/descricao/{descricao}
+        [HttpGet("descricao/{descricao}")]
+        public async Task<ActionResult<IEnumerable<Tamanho>>> GetTamanhosByDescricao(string descricao)
+        {
+            var tamanhos = await _context.Tamanhos
+                .Where(t => t.Descricao.Equals(descricao, StringComparison.OrdinalIgnoreCase))
+                .ToListAsync();
+
+            if (tamanhos == null || !tamanhos.Any())
+            {
+                return NotFound();
+            }
+
+            return tamanhos;
+        }
+
         // PUT: api/Tamanhos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
