@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Plushing.Data;
 
@@ -11,9 +12,11 @@ using Plushing.Data;
 namespace Plushing.Migrations
 {
     [DbContext(typeof(PlushingContext))]
-    partial class PlushingContextModelSnapshot : ModelSnapshot
+    [Migration("20250218123025_ACessorios")]
+    partial class ACessorios
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -342,7 +345,7 @@ namespace Plushing.Migrations
                     b.Property<Guid?>("PersonalizacaoId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal?>("PrecoFinal")
+                    b.Property<decimal>("PrecoFinal")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Quantidade")
@@ -414,9 +417,6 @@ namespace Plushing.Migrations
 
                     b.Property<Guid>("PadraoId")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("PrecoPersonalizacao")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Presenteado")
                         .IsRequired()

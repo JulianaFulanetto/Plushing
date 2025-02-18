@@ -15,8 +15,10 @@ namespace Plushing.Data
         public DbSet<Pelucia> Pelucias { get; set; }
         public DbSet<Personalizacao> Personalizacoes { get; set; }
         public DbSet<Cor> Cores { get; set; }
-
-        public DbSet<Roupa> Roupas { get; set; }
+        public DbSet<Acessorio> Acessorios { get; set; }
+        public DbSet<Padrao> Padroes { get; set; }
+        public DbSet<Tamanho> Tamanhos { get; set; }
+        public DbSet<TipoAcessorio> TiposAcessorios { get; set; }
 
 
 
@@ -30,8 +32,12 @@ namespace Plushing.Data
             builder.Entity<Venda>().ToTable("Venda");
             builder.Entity<Pelucia>().ToTable("Pelucia");
             builder.Entity<Personalizacao>().ToTable("Personalizacao");
+            builder.Entity<Acessorio>().ToTable("Acessorio");
+            builder.Entity<Padrao>().ToTable("Padrao");
             builder.Entity<Cor>().ToTable("Cor");
-            builder.Entity<Roupa>().ToTable("Roupa");
+            builder.Entity<Tamanho>().ToTable("Tamanho");
+            builder.Entity<TipoAcessorio>().ToTable("TipoAcessorio");
+
         }
     }
 }

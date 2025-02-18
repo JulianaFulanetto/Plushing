@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Plushing.Data;
 
@@ -11,9 +12,11 @@ using Plushing.Data;
 namespace Plushing.Migrations
 {
     [DbContext(typeof(PlushingContext))]
-    partial class PlushingContextModelSnapshot : ModelSnapshot
+    [Migration("20250218140347_Preco")]
+    partial class Preco
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
