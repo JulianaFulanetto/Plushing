@@ -10,6 +10,6 @@
         public Guid? PersonalizacaoId { get; set; }
         public Personalizacao? Personalizacao { get; set; }
         public int Quantidade { get; set; }
-        public decimal PrecoFinal { get; set; }
+        public decimal? PrecoFinal { get; set; } = 0;
     }
 }
