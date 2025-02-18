@@ -104,5 +104,80 @@ namespace Plushing.Controllers
         {
             return _context.Vendas.Any(e => e.VendaId == id);
         }
+        // GET: api/Vendas/formaPagamento/{formaPagamento}
+        [HttpGet("formaPagamento/{formaPagamento}")]
+        public async Task<ActionResult<IEnumerable<Venda>>> GetVendasByFormaPagamento(string formaPagamento)
+        {
+            var vendas = await _context.Vendas.Where(v => v.FormaPagamento == formaPagamento).ToListAsync();
+
+            if (vendas == null || !vendas.Any())
+            {
+                return NotFound();
+            }
+            return vendas;
+        }
+
+        // GET: api/Vendas/data/{data}
+        [HttpGet("data/{data}")]
+        public async Task<ActionResult<IEnumerable<Venda>>> GetVendasByData(DateTime data)
+        {
+            var vendas = await _context.Vendas.Where(v => v.DataVenda.Date == data.Date).ToListAsync();
+
+            if (vendas == null || !vendas.Any())
+            {
+                return NotFound();
+            }
+            return vendas;
+        }
+
+        // GET: api/Vendas/intervaloDatas?dataInicio={dataInicio}&dataFim={dataFim}
+        [HttpGet("intervaloDatas")]
+        public async Task<ActionResult<IEnumerable<Venda>>> GetVendasByIntervaloDatas(DateTime dataInicio, DateTime dataFim)
+        {
+            var vendas = await _context.Vendas
+                .Where(v => v.DataVenda.Date >= dataInicio.Date && v.DataVenda.Date <= dataFim.Date)
+                .ToListAsync();
+
+            if (vendas == null || !vendas.Any())
+            {
+                return NotFound();
+            }
+
+            return vendas;
+        }
+
+        // GET: api/Vendas/cliente/{clienteId}/data/{data}
+        [HttpGet("cliente/{clienteId}/data/{data}")]
+        public async Task<ActionResult<IEnumerable<Venda>>> GetVendasByClienteEData(Guid clienteId, DateTime data)
+        {
+            var vendas = await _context.Vendas
+                .Include(v => v.Carrinho)
+                .Where(v => v.Carrinho.ClienteId == clienteId && v.DataVenda.Date == data.Date)
+                .ToListAsync();
+
+            if (vendas == null || !vendas.Any())
+            {
+                return NotFound();
+            }
+
+            return vendas;
+        }
+
+        // GET: api/Vendas/cliente/{clienteId}/formaPagamento/{formaPagamento}
+        [HttpGet("cliente/{clienteId}/formaPagamento/{formaPagamento}")]
+        public async Task<ActionResult<IEnumerable<Venda>>> GetVendasByClienteEFormaPagamento(Guid clienteId, string formaPagamento)
+        {
+            var vendas = await _context.Vendas
+                .Include(v => v.Carrinho)
+                .Where(v => v.Carrinho.ClienteId == clienteId && v.FormaPagamento == formaPagamento)
+                .ToListAsync();
+
+            if (vendas == null || !vendas.Any())
+            {
+                return NotFound();
+            }
+
+            return vendas;
+        }
     }
 }
