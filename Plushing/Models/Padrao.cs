@@ -1,8 +1,8 @@
 ﻿namespace Plushing.Models
 {
-    public class Tamanho
+    public class Padrao
     {
-        public Guid TamanhoId { get; set; }
+        public Guid PadraoId { get; set; }
         public string Descricao { get; set; }
     }
 }

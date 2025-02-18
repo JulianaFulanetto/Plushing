@@ -2,9 +2,9 @@
 {
     public class ItemPedido
     {
-        public int Id { get; set; }
-        public Guid VendaId { get; set; }
-        public Venda? Venda { get; set; }
+        public Guid ItemPedidoId { get; set; }
+        public Guid CarrinhoId { get; set; }
+        public Carrinho? Carrinho { get; set; }
         public Guid PeluciaId { get; set; }
         public Pelucia? Pelucia { get; set; }
         public Guid? PersonalizacaoId { get; set; }
