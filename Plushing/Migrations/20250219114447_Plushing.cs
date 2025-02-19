@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Plushing.Migrations
 {
     /// <inheritdoc />
-    public partial class Models : Migration
+    public partial class Plushing : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -241,40 +241,6 @@ namespace Plushing.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Personalizacao",
-                columns: table => new
-                {
-                    PersonalizacaoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PadraoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TamanhoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Presenteado = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NomePelucia = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Personalizacao", x => x.PersonalizacaoId);
-                    table.ForeignKey(
-                        name: "FK_Personalizacao_Cor_CorId",
-                        column: x => x.CorId,
-                        principalTable: "Cor",
-                        principalColumn: "CorId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Personalizacao_Padrao_PadraoId",
-                        column: x => x.PadraoId,
-                        principalTable: "Padrao",
-                        principalColumn: "PadraoId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Personalizacao_Tamanho_TamanhoId",
-                        column: x => x.TamanhoId,
-                        principalTable: "Tamanho",
-                        principalColumn: "TamanhoId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Acessorio",
                 columns: table => new
                 {
@@ -319,36 +285,45 @@ namespace Plushing.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ItemPedido",
+                name: "Personalizacao",
                 columns: table => new
                 {
-                    ItemPedidoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CarrinhoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PeluciaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    PersonalizacaoId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    Quantidade = table.Column<int>(type: "int", nullable: false),
-                    PrecoFinal = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    PersonalizacaoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PadraoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TamanhoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    AcessorioId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PrecoPersonalizacao = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Presenteado = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NomePelucia = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ItemPedido", x => x.ItemPedidoId);
+                    table.PrimaryKey("PK_Personalizacao", x => x.PersonalizacaoId);
                     table.ForeignKey(
-                        name: "FK_ItemPedido_Carrinho_CarrinhoId",
-                        column: x => x.CarrinhoId,
-                        principalTable: "Carrinho",
-                        principalColumn: "CarrinhoId",
+                        name: "FK_Personalizacao_Acessorio_AcessorioId",
+                        column: x => x.AcessorioId,
+                        principalTable: "Acessorio",
+                        principalColumn: "AcessorioId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ItemPedido_Pelucia_PeluciaId",
-                        column: x => x.PeluciaId,
-                        principalTable: "Pelucia",
-                        principalColumn: "PeluciaId",
+                        name: "FK_Personalizacao_Cor_CorId",
+                        column: x => x.CorId,
+                        principalTable: "Cor",
+                        principalColumn: "CorId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ItemPedido_Personalizacao_PersonalizacaoId",
-                        column: x => x.PersonalizacaoId,
-                        principalTable: "Personalizacao",
-                        principalColumn: "PersonalizacaoId");
+                        name: "FK_Personalizacao_Padrao_PadraoId",
+                        column: x => x.PadraoId,
+                        principalTable: "Padrao",
+                        principalColumn: "PadraoId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Personalizacao_Tamanho_TamanhoId",
+                        column: x => x.TamanhoId,
+                        principalTable: "Tamanho",
+                        principalColumn: "TamanhoId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -370,6 +345,39 @@ namespace Plushing.Migrations
                         principalTable: "Carrinho",
                         principalColumn: "CarrinhoId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ItemPedido",
+                columns: table => new
+                {
+                    ItemPedidoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CarrinhoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PeluciaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    PersonalizacaoId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    Quantidade = table.Column<int>(type: "int", nullable: false),
+                    PrecoFinal = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ItemPedido", x => x.ItemPedidoId);
+                    table.ForeignKey(
+                        name: "FK_ItemPedido_Carrinho_CarrinhoId",
+                        column: x => x.CarrinhoId,
+                        principalTable: "Carrinho",
+                        principalColumn: "CarrinhoId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ItemPedido_Pelucia_PeluciaId",
+                        column: x => x.PeluciaId,
+                        principalTable: "Pelucia",
+                        principalColumn: "PeluciaId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ItemPedido_Personalizacao_PersonalizacaoId",
+                        column: x => x.PersonalizacaoId,
+                        principalTable: "Personalizacao",
+                        principalColumn: "PersonalizacaoId");
                 });
 
             migrationBuilder.CreateIndex(
@@ -442,6 +450,11 @@ namespace Plushing.Migrations
                 column: "PersonalizacaoId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Personalizacao_AcessorioId",
+                table: "Personalizacao",
+                column: "AcessorioId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Personalizacao_CorId",
                 table: "Personalizacao",
                 column: "CorId");
@@ -466,9 +479,6 @@ namespace Plushing.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Acessorio");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -490,9 +500,6 @@ namespace Plushing.Migrations
                 name: "Venda");
 
             migrationBuilder.DropTable(
-                name: "TipoAcessorio");
-
-            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -505,6 +512,9 @@ namespace Plushing.Migrations
                 name: "Carrinho");
 
             migrationBuilder.DropTable(
+                name: "Acessorio");
+
+            migrationBuilder.DropTable(
                 name: "Cor");
 
             migrationBuilder.DropTable(
@@ -515,6 +525,9 @@ namespace Plushing.Migrations
 
             migrationBuilder.DropTable(
                 name: "Cliente");
+
+            migrationBuilder.DropTable(
+                name: "TipoAcessorio");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

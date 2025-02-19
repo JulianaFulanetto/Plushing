@@ -12,8 +12,8 @@ using Plushing.Data;
 namespace Plushing.Migrations
 {
     [DbContext(typeof(PlushingContext))]
-    [Migration("20250218121121_Models")]
-    partial class Models
+    [Migration("20250219114447_Plushing")]
+    partial class Plushing
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -345,7 +345,7 @@ namespace Plushing.Migrations
                     b.Property<Guid?>("PersonalizacaoId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("PrecoFinal")
+                    b.Property<decimal?>("PrecoFinal")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Quantidade")
@@ -405,6 +405,9 @@ namespace Plushing.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("AcessorioId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("CorId")
                         .HasColumnType("uniqueidentifier");
 
@@ -415,6 +418,9 @@ namespace Plushing.Migrations
                     b.Property<Guid>("PadraoId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<decimal>("PrecoPersonalizacao")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("Presenteado")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -423,6 +429,8 @@ namespace Plushing.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("PersonalizacaoId");
+
+                    b.HasIndex("AcessorioId");
 
                     b.HasIndex("CorId");
 
@@ -598,6 +606,12 @@ namespace Plushing.Migrations
 
             modelBuilder.Entity("Plushing.Models.Personalizacao", b =>
                 {
+                    b.HasOne("Plushing.Models.Acessorio", "Acessorio")
+                        .WithMany()
+                        .HasForeignKey("AcessorioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Plushing.Models.Cor", "Cor")
                         .WithMany()
                         .HasForeignKey("CorId")
@@ -615,6 +629,8 @@ namespace Plushing.Migrations
                         .HasForeignKey("TamanhoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Acessorio");
 
                     b.Navigation("Cor");
 
