@@ -42,6 +42,22 @@ namespace Plushing.Controllers
             return padrao;
         }
 
+        // GET: api/Padraos/descricao/{descricao}
+        [HttpGet("descricao/{descricao}")]
+        public async Task<ActionResult<IEnumerable<Padrao>>> GetPadroesByDescricao(string descricao)
+        {
+            var padroes = await _context.Padroes
+                .Where(p => p.Descricao.Equals(descricao, StringComparison.OrdinalIgnoreCase))
+                .ToListAsync();
+
+            if (padroes == null || !padroes.Any())
+            {
+                return NotFound();
+            }
+
+            return padroes;
+        }
+
         // PUT: api/Padraos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
