@@ -179,5 +179,20 @@ namespace Plushing.Controllers
 
             return vendas;
         }
+
+        //GET: Retorne todas as vendas de um cliente específico
+        [HttpGet("cliente/{clienteId}")]
+        public async Task<ActionResult<IEnumerable<Venda>>> GetVendasByCliente(Guid clienteId)
+        {
+            var vendas = await _context.Vendas
+                .Include(v => v.Carrinho)
+                .Where(v => v.Carrinho.ClienteId == clienteId)
+                .ToListAsync();
+            if (vendas == null || !vendas.Any())
+            {
+                return NotFound();
+            }
+            return vendas;
+        }
     }
 }
