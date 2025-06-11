@@ -1,5 +1,5 @@
 # ᯓ★ Plushing API !
-uma aplicação backend desenvolvida com C# e .NET, responsável por fornecer os dados e funcionalidades para a plataforma de venda de ursinhos personalizados. A API gerencia usuários, produtos, pedidos e pagamentos, sendo o coração da lógica da aplicação — tudo com organização e eficiência.
+uma aplicação backend desenvolvida com C# e .NET, responsável por fornecer os dados e funcionalidades para a plataforma de venda de ursinhos personalizados. a API gerencia usuários, produtos, pedidos e pagamentos, sendo o coração da lógica da aplicação.
 
 ## ⋆ Tecnologias utilizadas
 ‧₊ C# <br />
