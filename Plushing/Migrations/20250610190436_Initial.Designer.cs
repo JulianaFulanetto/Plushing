@@ -12,8 +12,8 @@ using Plushing.Data;
 namespace Plushing.Migrations
 {
     [DbContext(typeof(PlushingContext))]
-    [Migration("20250219114447_Plushing")]
-    partial class Plushing
+    [Migration("20250610190436_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

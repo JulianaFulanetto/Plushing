@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Configurar a conexão com o banco de dados
 builder.Services.AddDbContext<PlushingContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DBPlushingAPI")));
 
 
 //Configurar o Cors - Permitir acesso da API de qualquer origem (Internet)
