@@ -17,12 +17,6 @@ uma aplicação backend desenvolvida com C# e .NET, responsável por fornecer os
 ‧₊ Integração com frontend React <br />
 ‧₊ Rotas RESTful organizadas e seguras <br />
 
-## ⋆ Links Úteis
-‧₊ [Back-End](https://github.com/JulianaFulanetto/Plushing)
- | [Front-End](https://github.com/strwmay/plushing)
- | [Swagger API](https://www.plushing.somee.com/swagger/index.html)
- | [Site na Vercel](https://plushing-git-main-maysas-projects-764dba61.vercel.app/) ‧₊
-
 ## ⋆ Instalação e uso
 
 ```
@@ -38,3 +32,9 @@ dotnet restore
 # 4. Inicie a aplicação
 dotnet run
 ```
+
+## ⋆ Links Úteis
+‧₊ [Back-End](https://github.com/JulianaFulanetto/Plushing)
+ | [Front-End](https://github.com/strwmay/plushing)
+ | [Swagger API](https://www.plushing.somee.com/swagger/index.html)
+ | [Site na Vercel](https://plushing-git-main-maysas-projects-764dba61.vercel.app/) ‧₊
