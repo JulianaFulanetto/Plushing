@@ -19,9 +19,9 @@ uma aplicação backend desenvolvida com C# e .NET, responsável por fornecer os
 
 ## ⋆ Links Úteis
 ‧₊ [Back-End](https://github.com/JulianaFulanetto/Plushing)
-‧₊ [Front-End](https://github.com/strwmay/plushing)
-‧₊ [Swagger API](https://www.plushing.somee.com/swagger/index.html)
-‧₊ [Site na Vercel](https://plushing-git-main-maysas-projects-764dba61.vercel.app/)
+ | [Front-End](https://github.com/strwmay/plushing)
+ | [Swagger API](https://www.plushing.somee.com/swagger/index.html)
+ | [Site na Vercel](https://plushing-git-main-maysas-projects-764dba61.vercel.app/) ‧₊
 
 ## ⋆ Instalação e uso
 
